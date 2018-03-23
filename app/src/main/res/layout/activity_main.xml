@@ -7,20 +7,56 @@
     android:background="@android:color/darker_gray"
     tools:context=".MainActivity">
 
-    <LinearLayout
-        android:id="@+id/innerL"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_margin="30dp"
-        android:background="@android:color/white"
-        android:orientation="vertical">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <ru.com.rh.localglobalvisiblerect.CustomImageView
-            android:id="@+id/img"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/innerL"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/droid" />
-    </LinearLayout>
+            android:layout_margin="30dp"
+            android:background="@android:color/white"
+            android:orientation="vertical">
+
+            <ru.com.rh.localglobalvisiblerect.CustomImageView
+                android:id="@+id/img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/droid" />
+
+            <ru.com.rh.localglobalvisiblerect.CustomImageView
+                android:id="@+id/img1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/droid" />
+
+            <ru.com.rh.localglobalvisiblerect.CustomImageView
+                android:id="@+id/img2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/droid" />
+
+            <ru.com.rh.localglobalvisiblerect.CustomImageView
+                android:id="@+id/img3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/droid" />
+
+            <ru.com.rh.localglobalvisiblerect.CustomImageView
+                android:id="@+id/img45"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/droid" />
+
+            <ru.com.rh.localglobalvisiblerect.CustomImageView
+                android:id="@+id/img5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/droid" />
+
+        </LinearLayout>
+    </ScrollView>
 
     <TextView
         android:id="@+id/local"

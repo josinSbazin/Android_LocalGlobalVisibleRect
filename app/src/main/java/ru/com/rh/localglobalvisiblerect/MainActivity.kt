@@ -15,6 +15,8 @@ class MainActivity : AppCompatActivity() {
     private var lastX: Int = 0
     private var lastY: Int = 0
 
+    private lateinit var main: View
+    private lateinit var img: CustomImageView
     private lateinit var local: TextView
     private lateinit var global: TextView
     private lateinit var offset: TextView
@@ -26,11 +28,28 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        local = (findViewById<View>(R.id.local) as TextView)
-        global = (findViewById<View>(R.id.global) as TextView)
-        offset = (findViewById<View>(R.id.offset) as TextView)
-        isShown = (findViewById<View>(R.id.isShown) as TextView)
-        percents = (findViewById<View>(R.id.percents) as TextView)
+        main = findViewById<View>(R.id.container)
+        img = findViewById(R.id.img)
+        local = findViewById(R.id.local)
+        global = findViewById(R.id.global)
+        offset = findViewById(R.id.offset)
+        isShown = findViewById(R.id.isShown)
+        percents = findViewById(R.id.percents)
+
+        main.viewTreeObserver.addOnGlobalLayoutListener {
+            val localRect = Rect()
+            val isLocalVisible = img.getLocalVisibleRect(localRect)
+            local.text = "local" + localRect.toString() + " - " + isLocalVisible.toString()
+
+            val globalRect = Rect()
+            val globalOffset = Point()
+            val isGlobalVisible = img.getGlobalVisibleRect(globalRect, globalOffset)
+            global.text = "global" + globalRect.toString() + " - " + isGlobalVisible.toString()
+            offset.text = "globalOffset:" + globalOffset.x + "," + globalOffset.y
+
+            isShown.text = "is shown:" + img.isShown.toString()
+            percents.text = "percents: " + getVisiblePercent(img)
+        }
 
         val imageView = findViewById<View>(R.id.img)
         imageView.setOnTouchListener { v, event ->
@@ -51,19 +70,19 @@ class MainActivity : AppCompatActivity() {
                     v.layout(left, top, right, bottom)
                     lastX = event.rawX.toInt()
                     lastY = event.rawY.toInt()
-
-                    val localRect = Rect()
-                    val isLocalVisible = v.getLocalVisibleRect(localRect)
-                    local.text = "local" + localRect.toString() + " - " + isLocalVisible.toString()
-
-                    val globalRect = Rect()
-                    val globalOffset = Point()
-                    val isGlobalVisible = v.getGlobalVisibleRect(globalRect, globalOffset)
-                    global.text = "global" + globalRect.toString() + " - " + isGlobalVisible.toString()
-                    offset.text = "globalOffset:" + globalOffset.x + "," + globalOffset.y
-
-                    isShown.text = "is shown:" + v.isShown.toString()
-                    percents.text = "percents: " + getVisiblePercent(v)
+//
+//                    val localRect = Rect()
+//                    val isLocalVisible = v.getLocalVisibleRect(localRect)
+//                    local.text = "local" + localRect.toString() + " - " + isLocalVisible.toString()
+//
+//                    val globalRect = Rect()
+//                    val globalOffset = Point()
+//                    val isGlobalVisible = v.getGlobalVisibleRect(globalRect, globalOffset)
+//                    global.text = "global" + globalRect.toString() + " - " + isGlobalVisible.toString()
+//                    offset.text = "globalOffset:" + globalOffset.x + "," + globalOffset.y
+//
+//                    isShown.text = "is shown:" + v.isShown.toString()
+//                    percents.text = "percents: " + getVisiblePercent(v)
                 }
             }
             true
